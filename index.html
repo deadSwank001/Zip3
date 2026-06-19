@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project YellowPages</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f9; padding: 50px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        input { width: 100%; padding: 15px; margin-bottom: 20px; box-sizing: border-box; font-size: 16px; border: 1px solid #ddd; border-radius: 4px; }
+        .scroll-box { height: 500px; overflow-y: auto; border: 1px solid #eee; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #007bff; color: white; position: sticky; top: 0; }
+        tr:hover { background: #f1f1f1; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🗂️ Project YellowPages Search</h1>
+    <p>Contact: User-Finder-Experience@proton.me</p>
+    
+    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search names, companies, or handles...">
+
+    <div class="scroll-box">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Entity Name</th>
+                    <th>Category</th>
+                    <th>Contact Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- You can add your 150+ rows here -->
+                <tr><td>Mistral AI</td><td>GenAI</td><td>contact@mistral.ai</td></tr>
+                <tr><td>Nvidia</td><td>AI/Chips</td><td>info@nvidia.com</td></tr>
+                <tr><td>Milkweed Publishers</td><td>Publishing</td><td>(612) 332-3192</td></tr>
+                <tr><td>@BickleRick_User1</td><td>X-Legacy</td><td>User-Finder-Experience@proton.me</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+function searchTable() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("dataTable");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none";
+        td = tr[i].getElementsByTagName("td");
+        for (var j = 0; j < td.length; j++) {
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                }
+            }
+        }
+    }
+}
+</script>
+
+</body>
+</html>
